@@ -37,7 +37,7 @@ namespace SquishIt.Framework.Css.Compressors
 
         public string CompressContent(string content)
         {
-            return CssCompressor.Compress(content, columnWidth, compressionType, removeComments);
+            return CssCompressor.Compress(content, columnWidth, compressionType);
         }
 
         string ICssCompressor.Identifier

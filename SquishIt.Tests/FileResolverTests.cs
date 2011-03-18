@@ -32,7 +32,7 @@ namespace SquishIt.Tests
             foreach (string key in values.Keys)
             {
                 var resolvedFile = fileResolver.TryResolve(key).ToList();
-                Assert.AreEqual(values[key], resolvedFile[0]);
+                Assert.AreEqual(values[key], resolvedFile[0], key);
             }            
         }
 

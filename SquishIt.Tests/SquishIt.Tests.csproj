@@ -89,6 +89,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FileResolverTests.cs" />
     <Compile Include="Stubs\StubHasher.cs" />
+    <Compile Include="TestUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SquishIt.Framework\SquishIt.Framework.csproj">

@@ -5,26 +5,27 @@ using SquishIt.Framework.JavaScript;
 
 namespace SquishIt.Mvc
 {
+    //TODO: convert back to MVC1 / IHtmlString return type
 	public static class MvcExtensions
 	{
-		public static IHtmlString RenderMvc(this ICssBundleBuilder cssBundleBuilder, string renderTo)
+		public static MvcHtmlString RenderMvc(this ICssBundleBuilder cssBundleBuilder, string renderTo)
 		{
-			return new MvcHtmlString(cssBundleBuilder.Render(renderTo));
+			return MvcHtmlString.Create(cssBundleBuilder.Render(renderTo));
 		}
 
-		public static IHtmlString RenderMvc(this IJavaScriptBundleBuilder javaScriptBundleBuilder, string renderTo)
+        public static MvcHtmlString RenderMvc(this IJavaScriptBundleBuilder javaScriptBundleBuilder, string renderTo)
 		{
-			return new MvcHtmlString(javaScriptBundleBuilder.Render(renderTo));
+            return MvcHtmlString.Create(javaScriptBundleBuilder.Render(renderTo));
 		}
 
-		public static IHtmlString RenderNamedMvc(this IJavaScriptBundle javaScriptBundle, string name)
+        public static MvcHtmlString RenderNamedMvc(this IJavaScriptBundle javaScriptBundle, string name)
 		{
-			return new MvcHtmlString(javaScriptBundle.RenderNamed(name));
+            return MvcHtmlString.Create(javaScriptBundle.RenderNamed(name));
 		}
 
-		public static IHtmlString RenderNamedMvc(this ICssBundle cssBundle, string name)
+        public static MvcHtmlString RenderNamedMvc(this ICssBundle cssBundle, string name)
 		{
-			return new MvcHtmlString(cssBundle.RenderNamed(name));
+            return MvcHtmlString.Create(cssBundle.RenderNamed(name));
 		}
 	}
 }

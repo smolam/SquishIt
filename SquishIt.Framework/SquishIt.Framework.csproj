@@ -122,6 +122,7 @@
     <Compile Include="Renderers\CacheRenderer.cs" />
     <Compile Include="Renderers\FileRenderer.cs" />
     <Compile Include="Renderers\IRenderer.cs" />
+    <Compile Include="Runtime.cs" />
     <Compile Include="Utilities\CssAssetsFileHasher.cs" />
     <Compile Include="Utilities\DebugStatusReader.cs" />
     <Compile Include="Files\FileReader.cs" />
