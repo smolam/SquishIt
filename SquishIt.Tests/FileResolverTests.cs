@@ -14,15 +14,19 @@ namespace SquishIt.Tests
         [Test]
         public void CanResolveFile()
         {
+            //dealing with working directory on a non-C location
+            var currentDirectory = Environment.CurrentDirectory;
+            var driveLetter = currentDirectory.Substring (0, currentDirectory.IndexOf ("\\"));//ignoring UNC paths
+
             //resharper doesn't support the TestCase attribute
             var values = new Dictionary<string, string>()
                              {
                                  {@"C:\testfile.js", @"C:\testfile.js"},
                                  {@"C:\test\testfile.js", @"C:\test\testfile.js"},
                                  {@"D:\testfile.js", @"D:\testfile.js"},
-                                 {@"\testfile.js", @"C:\testfile.js"},
-                                 {@"\test\testfile.js", @"C:\test\testfile.js"},
-                                 {@"\test\test3\testfile.js", @"C:\test\test3\testfile.js"},
+                                 {@"\testfile.js", driveLetter + @"\testfile.js"},
+                                 {@"\test\testfile.js", driveLetter + @"\test\testfile.js"},
+                                 {@"\test\test3\testfile.js", driveLetter + @"\test\test3\testfile.js"},
                                  {@"testfile.js", Environment.CurrentDirectory + @"\testfile.js"},
                                  {@"..\testfile.js", Path.GetFullPath(Environment.CurrentDirectory + @"\..\testfile.js")},
                                  {@"..\..\testfile.js", Path.GetFullPath(Environment.CurrentDirectory + @"\..\..\testfile.js")}
