@@ -374,7 +374,8 @@ namespace SquishIt.Tests
             Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_compressor_output.css?r=0F914C76920326122C4C22A5D3F898ED\" />", tag);
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
 			//TODO:problem w/newlines somewhere
-            Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em;}th{font-weight:normal;vertical-align:bottom;}.FloatRight{float:right;}.FloatLeft{float:left;}li{margin-bottom:.1em;margin-left:0;margin-top:.1em;}th{font-weight:normal;vertical-align:bottom;}.FloatRight{float:right;}.FloatLeft{float:left;}", cssBundleFactory.FileWriterFactory.Files[@"C:\css\css_with_compressor_output.css"]);
+            //YUI Compressor seems to be removing last semicolon from group, and appending newline before the next one, instead of keeping semicolon/removing newline
+            Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}\nth{font-weight:normal;vertical-align:bottom}\n.FloatRight{float:right}\n.FloatLeft{float:left}li{margin-bottom:.1em;margin-left:0;margin-top:.1em}\nth{font-weight:normal;vertical-align:bottom}\n.FloatRight{float:right}\n.FloatLeft{float:left}", cssBundleFactory.FileWriterFactory.Files[@"C:\css\css_with_compressor_output.css"]);
         }
 
         [Test]
