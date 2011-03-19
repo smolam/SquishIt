@@ -11,7 +11,8 @@ namespace SquishIt.Tests
     [TestFixture]
     public class FileResolverTests
     {                
-        [Test]
+        [Test, Platform("Windows")]
+		//some of these paths become dups on linux - not tremendously important for asp.net use
         public void CanResolveFile()
         {
             //dealing with working directory on a non-C location
