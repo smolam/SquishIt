@@ -4,3 +4,5 @@ obj
 *.suo
 _ReSharper*
 */test-results/
+SquishItAspNetTest/css/*.css
+SquishItAspNetTest/*.css

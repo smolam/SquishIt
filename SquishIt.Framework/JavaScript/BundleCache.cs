@@ -37,8 +37,9 @@ namespace SquishIt.Framework.JavaScript
             if (HttpContext.Current != null)
             {
                 HttpContext.Current.Cache.Add("squishit_" + key, content, new CacheDependency(files.ToArray()),
-                                                Cache.NoAbsoluteExpiration, 
-                                                new TimeSpan(365, 0, 0, 0),
+				                              	//365 days too much for mono's implementation of Sliding Expiration, changed to 365 days absolute
+                                                DateTime.Today.AddDays(365), 
+                                                Cache.NoSlidingExpiration,
                                                 CacheItemPriority.NotRemovable,
                                                 null);
             }
