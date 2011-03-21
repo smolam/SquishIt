@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using SquishIt.Framework.Css;
 using SquishIt.Framework.Utilities;
+using SquishIt.Tests.Helpers;
 
 namespace SquishIt.Tests
 {

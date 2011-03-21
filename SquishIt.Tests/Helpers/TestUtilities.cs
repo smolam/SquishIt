@@ -1,8 +1,7 @@
-using System;
 using SquishIt.Framework;
 using System.Text.RegularExpressions;
 
-namespace SquishIt.Tests
+namespace SquishIt.Tests.Helpers
 {
     public class TestUtilities
     {

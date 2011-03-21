@@ -3,6 +3,7 @@ using System.Reflection;
 using NUnit.Framework;
 using SquishIt.Framework.FileResolvers;
 using SquishIt.Framework.Utilities;
+using SquishIt.Tests.Helpers;
 using SquishIt.Tests.Stubs;
 
 namespace SquishIt.Tests
