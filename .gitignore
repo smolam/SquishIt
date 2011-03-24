@@ -3,6 +3,8 @@ bin
 obj
 *.suo
 _ReSharper*
-*/test-results/
+*test-results/
 SquishItAspNetTest/css/*.css
 SquishItAspNetTest/*.css
+*.pidb
+*.userprefs

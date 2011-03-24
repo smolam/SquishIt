@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Text;
 using System.Web;
@@ -86,10 +87,16 @@ namespace SquishIt.Framework
                 file = file.Substring(0, file.IndexOf('?'));
             }
             
+			//duplicated in CssAssetsFileHasher
             if (HttpContext.Current == null)
             {
-                file = file.Replace("/", "\\").TrimStart('~').TrimStart('\\');
-                return @"C:\" + file.Replace("/", "\\");
+                if (!(Runtime.Mono))
+                {
+                    file = file.Replace("/", "\\").TrimStart('~').TrimStart('\\');
+                    return @"C:\" + file.Replace("/", "\\");
+                }
+                file = file.TrimStart('~', '/');
+                return Path.Combine(Environment.CurrentDirectory, file);
             }
             return HttpContext.Current.Server.MapPath(file);
         }

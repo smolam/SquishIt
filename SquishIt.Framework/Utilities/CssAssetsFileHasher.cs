@@ -86,6 +86,7 @@ namespace SquishIt.Framework.Utilities
 
         private string ResolveAppRelativePathToFileSystem(string file)
         {
+			//duplicated in BundleBase
             if (HttpContext.Current == null)
             {
                 if (!(Runtime.Mono))
