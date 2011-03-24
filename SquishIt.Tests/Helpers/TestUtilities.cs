@@ -20,6 +20,8 @@ namespace SquishIt.Tests.Helpers
             return path;
         }
 		
+		//On Linux, only resolving paths relative to file system if HttpContext is null
+		//This is lazy, but I don't have a need for command line tool at present
 		public static string PrepareRelativePath(string windowsPath)
 		{
 			var path = windowsPath;

@@ -87,7 +87,7 @@ namespace SquishIt.Framework
                 file = file.Substring(0, file.IndexOf('?'));
             }
             
-			//duplicated in CssAssetsFileHasher
+			//TODO: duplicated in CssAssetsFileHasher
             if (HttpContext.Current == null)
             {
                 if (!(Runtime.Mono))
