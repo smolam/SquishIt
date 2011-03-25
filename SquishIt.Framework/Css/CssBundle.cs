@@ -399,14 +399,16 @@ namespace SquishIt.Framework.Css
 
         private string ProcessImport(string css)
         {
-            return importPattern.Replace(css, new MatchEvaluator(ApplyFileContentsToMatchedImport));
+			var evaluator = new MatchEvaluator(ApplyFileContentsToMatchedImport);
+            return importPattern.Replace(css, evaluator);
         }
 
         private string ApplyFileContentsToMatchedImport(Match match)
         {
             var file = ResolveAppRelativePathToFileSystem(match.Groups[2].Value);
             dependentFiles.Add(file);
-            return ReadFile(file);
+            var str = ReadFile(file);
+			return str;
         }
 
         private string GetFilesForRemote()

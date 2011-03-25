@@ -50,7 +50,7 @@ namespace SquishIt.Framework.Utilities
                 url = url.Substring(0, queryStringPosition);
             }
 
-            if (Runtime.Mono)
+            if (FileSystem.Unix)
             {
                 url = url.TrimStart('/');
             }
@@ -64,7 +64,7 @@ namespace SquishIt.Framework.Utilities
                 if (!url.StartsWith("/"))
                 {
                     var resolvedPath = Path.GetDirectoryName(cssFilePath);
-                    if (Runtime.Mono)
+                    if (FileSystem.Unix)
                     {
                         resolvedPath = resolvedPath.Replace("file:", "");
                     }
@@ -89,7 +89,7 @@ namespace SquishIt.Framework.Utilities
 			//TODO: duplicated in BundleBase
             if (HttpContext.Current == null)
             {
-                if (!(Runtime.Mono))
+                if (!(FileSystem.Unix))
                 {
                     file = file.Replace("/", "\\").TrimStart('~').TrimStart('\\');
                     return @"C:\" + file.Replace("/", "\\");

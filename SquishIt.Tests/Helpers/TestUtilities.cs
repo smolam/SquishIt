@@ -9,10 +9,10 @@ namespace SquishIt.Tests.Helpers
     {
         static readonly Regex driveLetter = new Regex(@"[a-zA-Z]{1}:\\");
 
-        public static string PreparePath(string windowsPath)
+        public static string PrepareRelativePath(string windowsPath)
         {
             var path = windowsPath;
-            if (Runtime.Mono)
+            if (FileSystem.Unix)
             {
                 path = driveLetter.Replace(path, @"/")
                     .Replace(@"\", @"/");
@@ -22,12 +22,12 @@ namespace SquishIt.Tests.Helpers
 		
 		//On Linux, only resolving paths relative to file system if HttpContext is null
 		//This is lazy, but I don't have a need for command line tool at present
-		public static string PrepareRelativePath(string windowsPath)
+		public static string PrepareAbsolutePath(string windowsPath)
 		{
 			var path = windowsPath;
-			if (Runtime.Mono)
+			if (FileSystem.Unix)
 			{
-				var extendedPath = PreparePath(path);
+				var extendedPath = PrepareRelativePath(path);
 				path = 	Environment.CurrentDirectory + extendedPath; //combine won't work here for some reason?
 			}
 			return path;

@@ -90,13 +90,13 @@ namespace SquishIt.Framework
 			//TODO: duplicated in CssAssetsFileHasher
             if (HttpContext.Current == null)
             {
-                if (!(Runtime.Mono))
+                if (!(FileSystem.Unix))
                 {
                     file = file.Replace("/", "\\").TrimStart('~').TrimStart('\\');
                     return @"C:\" + file.Replace("/", "\\");
                 }
-                file = file.TrimStart('~', '/');
-                return Path.Combine(Environment.CurrentDirectory, file);
+                file = file.TrimStart('~');
+                return Environment.CurrentDirectory + file;
             }
             return HttpContext.Current.Server.MapPath(file);
         }

@@ -42,6 +42,26 @@ namespace SquishIt.Tests
             }            
         }
 
+		[Test, Platform(Include="Unix, Linux, Mono")]
+		public void CanResolveFile_Unix()
+		{
+            var currentDirectory = Environment.CurrentDirectory;
+
+            var values = new Dictionary<string, string>()
+                             {
+                                 {@"testfile.js", Path.Combine(currentDirectory, "testfile.js")},
+                                 {@"/testfile.js", @"/testfile.js"},
+								 {@"../testfile.js", Path.Combine(currentDirectory.Substring(0, currentDirectory.LastIndexOf("/")), "testfile.js")}
+                             };
+
+            var fileResolver = new FileResolver();
+            foreach (string key in values.Keys)
+            {
+                var resolvedFile = fileResolver.TryResolve(key).ToList();
+                Assert.AreEqual(values[key], resolvedFile[0], key);
+            }     
+		}
+		
         [Test]
         public void CanResolveDirectory()
         {
