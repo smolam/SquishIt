@@ -13,7 +13,7 @@ namespace SquishIt.Tests
 		[TestFixture]
 		public class JavaScriptBundleTests
 		{
-				private string javaScript = @"
+				private string javaScript =  TestUtilities.NormalizeLineEndings(@"
 																				function product(a, b)
 																				{
 																						return a * b;
@@ -21,11 +21,12 @@ namespace SquishIt.Tests
 
 																				function sum(a, b){
 																						return a + b;
-																				}";
+																				}");
 
-				private string javaScript2 = @"function sum(a, b){
+				private string javaScript2 = TestUtilities.NormalizeLineEndings(
+                                                @"function sum(a, b){
 																						return a + b;
-																			 }";
+																			 }");
 
 				private IJavaScriptBundle javaScriptBundle;
 				private IJavaScriptBundle javaScriptBundle2;
@@ -222,12 +223,8 @@ namespace SquishIt.Tests
 								.WithMinifier(JavaScriptMinifiers.NullMinifier)
 								.Render("~/js/output_6.js");
 				
-						if (FileSystem.Unix) { //hash for uncompressed content is calculated differently w/ different newline characters
-							Assert.AreEqual("<script type=\"text/javascript\" src=\"js/output_6.js?r=20A94660E5983C3E33992D31FAAB109A\"></script>", tag);
-						}
-						else {
-							Assert.AreEqual("<script type=\"text/javascript\" src=\"js/output_6.js?r=361CBAF229793498C1325D939DE3B25F\"></script>", tag);
-						}
+						Assert.AreEqual("<script type=\"text/javascript\" src=\"js/output_6.js?r=20A94660E5983C3E33992D31FAAB109A\"></script>", tag);
+
 						Assert.AreEqual(javaScript, fileWriterFactory.Files[TestUtilities.PrepareAbsolutePath(@"C:\js\output_6.js")]);
 				}
 

@@ -31,6 +31,13 @@ namespace SquishIt.Tests.Helpers
 			}
 			return path;
 		}
+
+        public static string NormalizeLineEndings(string contents)
+        {
+            //hash is calculated differently w/ different newline characters
+            //normalize windows -> unix bc it's easier
+            return contents.Replace("\r\n", "\n");
+        }
     }
 }
 

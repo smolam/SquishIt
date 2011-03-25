@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SquishIt.Framework.Css;
 using SquishIt.Framework.Css.Compressors;
 using SquishIt.Framework.Files;
+using SquishIt.Framework.Tests.Mocks;
 using SquishIt.Framework.Utilities;
 using SquishIt.Tests.Helpers;
 
@@ -11,7 +12,7 @@ namespace SquishIt.Tests
     [TestFixture]
     public class CssBundleTests
     {
-        private string css = @" li {
+        private string css = TestUtilities.NormalizeLineEndings(@" li {
                                     margin-bottom:0.1em;
                                     margin-left:0;
                                     margin-top:0.1em;
@@ -28,9 +29,10 @@ namespace SquishIt.Tests
                                 
                                 .FloatLeft {
                                     float:left;
-                                }";
+                                }");
 
-        private string css2 = @" li {
+        private string css2 = TestUtilities.NormalizeLineEndings(
+                                @" li {
                                     margin-bottom:0.1em;
                                     margin-left:0;
                                     margin-top:0.1em;
@@ -39,10 +41,10 @@ namespace SquishIt.Tests
                                 th {
                                     font-weight:normal;
                                     vertical-align:bottom;
-                                }";
+                                }");
 
 
-        private string cssLess =
+        private string cssLess = TestUtilities.NormalizeLineEndings(
                                     @"@brand_color: #4D926F;
 
                                     #header {
@@ -51,7 +53,7 @@ namespace SquishIt.Tests
  
                                     h2 {
                                         color: @brand_color;
-                                    }";
+                                    }");
 
         private CssBundleFactory cssBundleFactory;
         private IHasher hasher;
@@ -390,12 +392,8 @@ namespace SquishIt.Tests
                             .WithCompressor(CssCompressors.NullCompressor)
                             .Render("/css/css_with_null_compressor_output.css");
 
-			if (FileSystem.Unix) { //hash is calculated differently w/ different newline characters
-				Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_null_compressor_output.css?r=6BDA044E7A8E28139DA7E2E47AB76D54\" />", tag);
-			}
-			else {
-            	Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_null_compressor_output.css?r=9650CBE3E753DF5F9146A2AF738A8272\" />", tag);
-			}
+ 
+			Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_null_compressor_output.css?r=6BDA044E7A8E28139DA7E2E47AB76D54\" />", tag);
 			
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
             Assert.AreEqual(css + css, cssBundleFactory.FileWriterFactory.Files[TestUtilities.PrepareAbsolutePath(@"C:\css\css_with_null_compressor_output.css")]);

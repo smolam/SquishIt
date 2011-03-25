@@ -17,7 +17,7 @@ namespace SquishIt.Framework.Tests.Mocks
 
         public void SetContentsForFile(string file, string contents)
         {
-            contentsForFiles.Add(file, contents);
+            contentsForFiles.Add (file, contents);
         }
 
         public void SetFileExists(bool fileExists)
