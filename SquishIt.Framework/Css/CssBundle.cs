@@ -228,7 +228,7 @@ namespace SquishIt.Framework.Css
 
                         dependentFiles.Clear();
 
-                        string outputFile = ResolveAppRelativePathToFileSystem(renderTo);
+                        string outputFile = FileSystem.ResolveAppRelativePathToFileSystem(renderTo);
 
                         List<string> files = GetFiles(GetFilePaths(cssFiles));
                         files.AddRange(GetFiles(GetEmbeddedResourcePaths(embeddedResourceCssFiles)));
@@ -313,7 +313,7 @@ namespace SquishIt.Framework.Css
             {
                 if (file.ToLower().EndsWith(".less") || file.ToLower().EndsWith(".less.css"))
                 {
-                    string outputFile = ResolveAppRelativePathToFileSystem(file);
+                    string outputFile = FileSystem.ResolveAppRelativePathToFileSystem(file);
                     string css = ProcessLess(outputFile);
                     outputFile += ".debug.css";
                     using (var fileWriter = fileWriterFactory.GetFileWriter(outputFile))
@@ -399,16 +399,14 @@ namespace SquishIt.Framework.Css
 
         private string ProcessImport(string css)
         {
-			var evaluator = new MatchEvaluator(ApplyFileContentsToMatchedImport);
-            return importPattern.Replace(css, evaluator);
+            return importPattern.Replace(css, new MatchEvaluator(ApplyFileContentsToMatchedImport));
         }
 
         private string ApplyFileContentsToMatchedImport(Match match)
         {
-            var file = ResolveAppRelativePathToFileSystem(match.Groups[2].Value);
+            var file = FileSystem.ResolveAppRelativePathToFileSystem(match.Groups[2].Value);
             dependentFiles.Add(file);
-            var str = ReadFile(file);
-			return str;
+            return ReadFile(file);
         }
 
         private string GetFilesForRemote()

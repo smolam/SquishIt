@@ -75,29 +75,13 @@ namespace SquishIt.Framework.Utilities
                 }
                 else
                 {
-                    resolvedUrl = ResolveAppRelativePathToFileSystem(url);
+                    resolvedUrl = FileSystem.ResolveAppRelativePathToFileSystem(url);
                 }
 
                 return FileResolver.TryResolve(resolvedUrl).ToList()[0];
             }
 
             return urlUri.LocalPath;
-        }
-
-        private string ResolveAppRelativePathToFileSystem(string file)
-        {
-			//TODO: duplicated in BundleBase
-            if (HttpContext.Current == null)
-            {
-                if (!(FileSystem.Unix))
-                {
-                    file = file.Replace("/", "\\").TrimStart('~').TrimStart('\\');
-                    return @"C:\" + file.Replace("/", "\\");
-                }
-                file = file.TrimStart('~', '/');
-                return Path.Combine(Environment.CurrentDirectory, file);
-            }
-            return HttpContext.Current.Server.MapPath(file);
         }
 
         /// <summary>

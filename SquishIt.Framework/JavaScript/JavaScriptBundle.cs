@@ -151,7 +151,7 @@ namespace SquishIt.Framework.JavaScript
                 return debugJavaScriptFiles[name];
             }
 
-            string outputFile = ResolveAppRelativePathToFileSystem(state.RenderTo);
+            string outputFile = FileSystem.ResolveAppRelativePathToFileSystem(state.RenderTo);
             return RenderRelease(name, state.RenderTo, new FileRenderer(fileWriterFactory));
         }
 
@@ -223,7 +223,7 @@ namespace SquishIt.Framework.JavaScript
                             renderTo = renderTo.Replace("#", hash);
                         }
 
-                        var outputFile = ResolveAppRelativePathToFileSystem(renderTo);
+                        var outputFile = FileSystem.ResolveAppRelativePathToFileSystem(renderTo);
 
                         string minifiedJavaScript;
                         if (renderOnlyIfOutputFileMissing && FileExists(outputFile))

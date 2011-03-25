@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Web;
 
 namespace SquishIt.Framework.FileResolvers
 {
@@ -13,6 +14,6 @@ namespace SquishIt.Framework.FileResolvers
         public IEnumerable<string> TryResolve(string file)
         {
             yield return Path.GetFullPath(file);            
-        }        
+        }
     }
 }
