@@ -1,13 +1,10 @@
-using System.Linq;
 using SquishIt.Framework;
 using NUnit.Framework;
 using SquishIt.Framework.Css;
 using SquishIt.Framework.Css.Compressors;
 using SquishIt.Framework.Files;
-using SquishIt.Framework.Tests.Mocks;
 using SquishIt.Framework.Utilities;
 using SquishIt.Tests.Helpers;
-using SquishIt.Tests.Stubs;
 
 namespace SquishIt.Tests
 {
@@ -216,7 +213,6 @@ namespace SquishIt.Tests
                 .Add("~/css/something/test.less")
                 .Render("~/css/output_less_with_rewrites.css");
 
-			System.Console.WriteLine(cssBundleFactory.FileWriterFactory.Files.Keys.First());
             string contents = cssBundleFactory.FileWriterFactory.Files[TestUtilities.PrepareAbsolutePath(@"C:\css\output_less_with_rewrites.css")];
 
             Assert.AreEqual("#header{color:#4d926f;background-image:url(image/mygif.gif)}", contents);
@@ -375,7 +371,6 @@ namespace SquishIt.Tests
 
             Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_compressor_output.css?r=0F914C76920326122C4C22A5D3F898ED\" />", tag);
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
-			//TODO:problem w/newlines somewhere
             //YUI Compressor seems to be removing last semicolon from group, and appending newline before the next one, instead of keeping semicolon/removing newline
             Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}\nth{font-weight:normal;vertical-align:bottom}\n.FloatRight{float:right}\n.FloatLeft{float:left}li{margin-bottom:.1em;margin-left:0;margin-top:.1em}\nth{font-weight:normal;vertical-align:bottom}\n.FloatRight{float:right}\n.FloatLeft{float:left}", cssBundleFactory.FileWriterFactory.Files[TestUtilities.PrepareAbsolutePath(@"C:\css\css_with_compressor_output.css")]);
         }

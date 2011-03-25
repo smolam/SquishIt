@@ -14,7 +14,6 @@ namespace SquishIt.Framework
 		
 		public static string ResolveAppRelativePathToFileSystem(string file)
         {
-			//TODO: duplicated in BundleBase
             if (HttpContext.Current == null)
             {
                 if (!(Unix))
