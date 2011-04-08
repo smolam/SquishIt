@@ -2,6 +2,7 @@
 using SquishIt.Framework.Css;
 using SquishIt.Framework.Utilities;
 using System.Text.RegularExpressions;
+using SquishIt.Tests.Helpers;
 
 namespace SquishIt.Tests
 {

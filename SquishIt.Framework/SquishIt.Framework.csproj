@@ -142,7 +142,7 @@
     <Compile Include="Files\IFileWriterFactory.cs" />
     <Compile Include="Utilities\IHasher.cs" />
     <Compile Include="Utilities\NamedState.cs" />
-    <Compile Include="Runtime.cs" />
+    <Compile Include="FileSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="closure-compiler\compiler.jar">

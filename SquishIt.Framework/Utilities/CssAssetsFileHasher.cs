@@ -50,7 +50,7 @@ namespace SquishIt.Framework.Utilities
                 url = url.Substring(0, queryStringPosition);
             }
 			
-			if (Runtime.Mono)
+			if (FileSystem.Unix)
 			{
 				url = url.TrimStart('/');	
 			}
@@ -64,7 +64,7 @@ namespace SquishIt.Framework.Utilities
 				if (!url.StartsWith("/"))
                 {
                     var resolvedPath = Path.GetDirectoryName(cssFilePath);
-					if(Runtime.Mono) 
+					if(FileSystem.Unix) 
 					{
 						resolvedPath = resolvedPath.Replace("file:", "");	
 					}
@@ -75,28 +75,13 @@ namespace SquishIt.Framework.Utilities
                 }
                 else
                 {
-                    resolvedUrl = ResolveAppRelativePathToFileSystem(url);
+                    resolvedUrl = FileSystem.ResolveAppRelativePathToFileSystem(url);
                 }
 
                 return FileResolver.TryResolve(resolvedUrl).ToList()[0];
             }
 
             return urlUri.LocalPath;
-        }
-
-        private string ResolveAppRelativePathToFileSystem(string file)
-        {
-            if (HttpContext.Current == null)
-            {
-				if (!(Runtime.Mono))
-				{
-                	file = file.Replace("/", "\\").TrimStart('~').TrimStart('\\');
-                	return @"C:\" + file.Replace("/", "\\");
-				}
-				file = file.TrimStart('~', '/' );
-				return Path.Combine(Environment.CurrentDirectory, file); 
-            }
-            return HttpContext.Current.Server.MapPath(file);
         }
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace SquishIt.Framework.Css
         public static string RewriteCssPaths(string outputPath, string sourcePath, string css, ICssAssetsFileHasher cssAssetsFileHasher)
         {
 			//see http://stackoverflow.com/questions/3692818/uri-makerelativeuri-behavior-on-mono
-			if(Runtime.Mono) {
+			if(FileSystem.Unix) {
 				outputPath += "/";
 			} 
 			
