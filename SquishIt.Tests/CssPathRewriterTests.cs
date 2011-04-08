@@ -22,8 +22,8 @@ namespace SquishIt.Tests
                                                                 background-image: url(/img/blah/somethingelse.jpg);
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath (@"C:\somepath\someothersubpath\evendeeper\output.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath (@"C:\somepath\someothersubpath\evendeeper\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -53,8 +53,8 @@ namespace SquishIt.Tests
                                                                 background-image: url(../img/blah/somethingelse.jpg);
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\someothersubpath\output.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\someothersubpath\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -82,8 +82,8 @@ namespace SquishIt.Tests
                                                     ";
                 //real example from jquery ui-generated custom css file
 
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\someothersubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\someothersubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
 
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
@@ -109,8 +109,8 @@ namespace SquishIt.Tests
                                                         .ui-widget-header .ui-icon {background-image: url(iMages/ui-icons_222222_256x240.png); }
                                                     ";
 
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\someothersubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\someothersubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
 
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
@@ -138,8 +138,8 @@ namespace SquishIt.Tests
                                                                 background-image: url(../img/blah/somethingelse.jpg);
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\someothersubpath\evendeeper\output.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\someothersubpath\evendeeper\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -169,8 +169,8 @@ namespace SquishIt.Tests
                                                                 background-image: url(../img/blah/somethingelse.jpg);
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath (@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\output.css");
+            string sourceFile = TestUtilities.PreparePath (@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -200,8 +200,8 @@ namespace SquishIt.Tests
                                                                 background-image: url(img/blah/somethingelse.jpg);
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\someothersubpath\evendeeper\output.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\someothersubpath\evendeeper\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -231,8 +231,8 @@ namespace SquishIt.Tests
                                                                 background-image: url(""../img/blah/somethingelse.jpg"");
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\output.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -262,8 +262,8 @@ namespace SquishIt.Tests
                                                                 background-image: url('../img/blah/somethingelse.jpg');
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\output.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -293,8 +293,8 @@ namespace SquishIt.Tests
                                                                 background-image: uRL(""../img/blah/somethingelse.jpg"");
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\output.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -324,8 +324,8 @@ namespace SquishIt.Tests
                                                                 background-image: url(http://www.somewhere.com/img/blah/somethingelse.jpg);
                                                         }
                                                     ";
-            string sourceFile = TestUtilities.PrepareRelativePath(@"C:\somepath\somesubpath\myfile.css");
-            string targetFile = TestUtilities.PrepareRelativePath(@"C:\somepath\someothersubpath\evendeeper\output.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string targetFile = TestUtilities.PreparePath(@"C:\somepath\someothersubpath\evendeeper\output.css");
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =

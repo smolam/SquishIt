@@ -14,6 +14,12 @@ namespace SquishIt.Framework
 		
 		public static string ResolveAppRelativePathToFileSystem(string file)
         {
+            // Remove query string
+            if (file.IndexOf ('?') != -1) 
+            {
+                file = file.Substring (0, file.IndexOf ('?'));
+            }
+
             if (HttpContext.Current == null)
             {
                 if (!(Unix))

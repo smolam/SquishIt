@@ -17,7 +17,7 @@ namespace SquishIt.Tests
             var hashQueryStringKeyName = "v";
             var fileResolver = new FileResolver();
             var hasher = new StubHasher("hash");
-            var cssFilePath = TestUtilities.PrepareRelativePath(@"C:\somepath\output.css");
+            var cssFilePath = TestUtilities.PreparePath(@"C:\somepath\output.css");
             var url = "http://www.test.com/image.jpg";
 
             var assetsFileHasher = new CssAssetsFileHasher(hashQueryStringKeyName, fileResolver, hasher);
@@ -33,7 +33,7 @@ namespace SquishIt.Tests
             var hashQueryStringKeyName = "v";
             var fileResolver = new FileResolver();
             var hasher = new StubHasher("hash");
-            var cssFilePath = TestUtilities.PrepareRelativePath(@"C:\somepath\output.css");
+            var cssFilePath = TestUtilities.PreparePath(@"C:\somepath\output.css");
             var url = "/doesnotexist.jpg";
 
             var assetsFileHasher = new CssAssetsFileHasher(hashQueryStringKeyName, fileResolver, hasher);
@@ -51,7 +51,7 @@ namespace SquishIt.Tests
             var hasher = new StubHasher(hashValue);
             var fileResolver = new FileResolver();
             var uri = Assembly.GetExecutingAssembly().CodeBase;
-            var cssFilePath = Path.GetDirectoryName(uri) + TestUtilities.PrepareRelativePath(@"\subdirectory\output.css");
+            var cssFilePath = Path.GetDirectoryName(uri) + TestUtilities.PreparePath(@"\subdirectory\output.css");
             var url = "../" + Path.GetFileName(uri);
             var assetsFileHasher = new CssAssetsFileHasher(hashQueryStringKeyName, fileResolver, hasher);
 
@@ -70,7 +70,7 @@ namespace SquishIt.Tests
             var hasher = new StubHasher(hashValue);
             var fileResolver = new FileResolver();
             var uri = Assembly.GetExecutingAssembly().CodeBase;
-            var cssFilePath = Path.GetDirectoryName(uri) + TestUtilities.PrepareRelativePath(@"\subdirectory\output.css");
+            var cssFilePath = Path.GetDirectoryName(uri) + TestUtilities.PreparePath(@"\subdirectory\output.css");
             var url = "../" + Path.GetFileName(uri) + "?test=value";
             var assetsFileHasher = new CssAssetsFileHasher(hashQueryStringKeyName, fileResolver, hasher);
 
@@ -88,7 +88,7 @@ namespace SquishIt.Tests
             var hashValue = "hashValue";
             var hasher = new StubHasher(hashValue);
             var uri = Assembly.GetExecutingAssembly().CodeBase;
-            var cssFilePath = Path.Combine(Path.GetDirectoryName(uri), TestUtilities.PrepareRelativePath(@"\output.css"));
+            var cssFilePath = Path.Combine(Path.GetDirectoryName(uri), TestUtilities.PreparePath(@"\output.css"));
             var url = "/" + Path.GetFileName(uri);
             var pathToResolveTo = Assembly.GetExecutingAssembly().Location;
             var fileResolver = new StubFileResolver(pathToResolveTo);
@@ -108,7 +108,7 @@ namespace SquishIt.Tests
             var hashValue = "hashValue";
             var hasher = new StubHasher(hashValue);
             var uri = Assembly.GetExecutingAssembly().CodeBase;
-            var cssFilePath = Path.Combine(Path.GetDirectoryName(uri), TestUtilities.PrepareRelativePath(@"\output.css"));
+            var cssFilePath = Path.Combine(Path.GetDirectoryName(uri), TestUtilities.PreparePath(@"\output.css"));
             var url = "/" + Path.GetFileName(uri) + "?test=value";
             var pathToResolveTo = Assembly.GetExecutingAssembly().Location;
             var fileResolver = new StubFileResolver(pathToResolveTo);
