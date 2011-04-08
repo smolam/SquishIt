@@ -4,22 +4,22 @@ using System.Web;
 
 namespace SquishIt.Framework
 {
-	public class FileSystem
-	{
-		public static bool Unix 
-		{
-			//assuming this means mono, hoping to avoid a compiler directive / separate assemblies
-			get { return Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX; }	
-		}
-		
-		public static string ResolveAppRelativePathToFileSystem(string file)
+    public class FileSystem
+    {
+        public static bool Unix
         {
-			// Remove query string
+            //assuming this means mono, hoping to avoid a compiler directive / separate assemblies
+            get { return Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX; }
+        }
+
+        public static string ResolveAppRelativePathToFileSystem(string file)
+        {
+            // Remove query string
             if (file.IndexOf('?') != -1)
             {
                 file = file.Substring(0, file.IndexOf('?'));
             }
-			
+
             if (HttpContext.Current == null)
             {
                 if (!(Unix))
@@ -32,6 +32,5 @@ namespace SquishIt.Framework
             }
             return HttpContext.Current.Server.MapPath(file);
         }
-	}
+    }
 }
-

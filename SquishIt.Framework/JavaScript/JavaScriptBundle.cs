@@ -8,7 +8,7 @@ using SquishIt.Framework.Utilities;
 
 namespace SquishIt.Framework.JavaScript
 {
-    internal class JavaScriptBundle: BundleBase, IJavaScriptBundle, IJavaScriptBundleBuilder
+    internal class JavaScriptBundle : BundleBase, IJavaScriptBundle, IJavaScriptBundleBuilder
     {
         private static BundleCache bundleCache = new BundleCache();
         private static Dictionary<string, string> debugJavaScriptFiles = new Dictionary<string, string>();
@@ -16,7 +16,7 @@ namespace SquishIt.Framework.JavaScript
         private List<string> javaScriptFiles = new List<string>();
         private List<string> remoteJavaScriptFiles = new List<string>();
         private List<string> embeddedResourceJavaScriptFiles = new List<string>();
-        
+
         private IJavaScriptMinifier javaScriptMinifier = new MsMinifier();
         private const string scriptTemplate = "<script type=\"text/javascript\" {0}src=\"{1}\"></script>";
         private bool renderOnlyIfOutputFileMissing = false;
@@ -27,7 +27,7 @@ namespace SquishIt.Framework.JavaScript
         {
         }
 
-        public JavaScriptBundle(IDebugStatusReader debugStatusReader, IFileWriterFactory fileWriterFactory, IFileReaderFactory fileReaderFactory, ICurrentDirectoryWrapper currentDirectoryWrapper, IHasher hasher): 
+        public JavaScriptBundle(IDebugStatusReader debugStatusReader, IFileWriterFactory fileWriterFactory, IFileReaderFactory fileReaderFactory, ICurrentDirectoryWrapper currentDirectoryWrapper, IHasher hasher) :
             base(fileWriterFactory, fileReaderFactory, debugStatusReader, currentDirectoryWrapper, hasher)
         {
         }
@@ -211,10 +211,10 @@ namespace SquishIt.Framework.JavaScript
                         string compressedJavaScript;
                         string hash = null;
                         bool hashInFileName = false;
-                        
+
                         List<string> files = GetFiles(GetFilePaths(javaScriptFiles));
                         files.AddRange(GetFiles(GetEmbeddedResourcePaths(embeddedResourceJavaScriptFiles)));
-                        
+
                         if (renderTo.Contains("#"))
                         {
                             hashInFileName = true;
@@ -235,12 +235,12 @@ namespace SquishIt.Framework.JavaScript
                             minifiedJavaScript = MinifyJavaScript(files, javaScriptMinifier);
                             renderer.Render(minifiedJavaScript, outputFile);
                         }
-                        
+
                         if (hash == null)
                         {
-                            hash = hasher.GetHash(minifiedJavaScript);                            
+                            hash = hasher.GetHash(minifiedJavaScript);
                         }
-                        
+
                         string renderedScriptTag;
                         if (hashInFileName)
                         {
@@ -251,11 +251,11 @@ namespace SquishIt.Framework.JavaScript
                             string path = ExpandAppRelativePath(renderTo);
                             if (path.Contains("?"))
                             {
-                                renderedScriptTag = FillTemplate(ExpandAppRelativePath(renderTo) + "&r=" + hash);    
+                                renderedScriptTag = FillTemplate(ExpandAppRelativePath(renderTo) + "&r=" + hash);
                             }
                             else
                             {
-                                renderedScriptTag = FillTemplate(ExpandAppRelativePath(renderTo) + "?r=" + hash);        
+                                renderedScriptTag = FillTemplate(ExpandAppRelativePath(renderTo) + "?r=" + hash);
                             }
                         }
                         renderedScriptTag = String.Concat(GetFilesForRemote(), renderedScriptTag);
@@ -293,22 +293,22 @@ namespace SquishIt.Framework.JavaScript
             return MinifierRegistry.Get(minifier);
         }
 
-		private string MinifyJavaScript(List<string> files, IJavaScriptMinifier minifier)
-		{
-			try
-			{
-				var inputJavaScript = new StringBuilder();
-				foreach (var file in files)
-				{
-					inputJavaScript.Append(ReadFile(file) + "\n");
-				}
-				return minifier.CompressContent(inputJavaScript.ToString());
-			}
-			catch (Exception e)
-			{
-				throw new Exception(string.Format("Error processing: {0}", e.Message), e);
-			}
-		}
+        private string MinifyJavaScript(List<string> files, IJavaScriptMinifier minifier)
+        {
+            try
+            {
+                var inputJavaScript = new StringBuilder();
+                foreach (var file in files)
+                {
+                    inputJavaScript.Append(ReadFile(file) + "\n");
+                }
+                return minifier.CompressContent(inputJavaScript.ToString());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(string.Format("Error processing: {0}", e.Message), e);
+            }
+        }
 
         private string GetFilesForRemote()
         {

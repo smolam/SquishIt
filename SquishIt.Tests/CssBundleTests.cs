@@ -74,7 +74,7 @@ namespace SquishIt.Tests
                 .Create();
 
             cssBundleFactory.FileReaderFactory.SetContents(css);
-            
+
             string tag = cssBundle
                             .Add("/css/first.css")
                             .Add("/css/second.css")
@@ -120,7 +120,7 @@ namespace SquishIt.Tests
             Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"/css/css_with_media_output.css?r=C33D1225DED9D889876CEE87754EE305\" />", tag);
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
             Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}th{font-weight:normal;vertical-align:bottom}.FloatRight{float:right}.FloatLeft{float:left}li{margin-bottom:.1em;margin-left:0;margin-top:.1em}th{font-weight:normal;vertical-align:bottom}.FloatRight{float:right}.FloatLeft{float:left}"
-			                , cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\css_with_media_output.css")]);
+                            , cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\css_with_media_output.css")]);
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace SquishIt.Tests
             Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/output_embedded.css?r=67F81278D746D60E6F711B5A29747388\" />", tag);
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
             Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}th{font-weight:normal;vertical-align:bottom}.FloatRight{float:right}.FloatLeft{float:left}"
-			                , cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\output_embedded.css")]);
+                            , cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\output_embedded.css")]);
         }
 
         [Test]
@@ -229,7 +229,7 @@ namespace SquishIt.Tests
                 .WithDebuggingEnabled(false)
                 .WithContents(cssLess)
                 .Create();
-            
+
             string tag = cssBundle
                 .Add("~/css/test.less.css")
                 .Render("~/css/output_less_dot_css.css");
@@ -372,10 +372,10 @@ namespace SquishIt.Tests
                             .WithCompressor(CssCompressors.YuiCompressor)
                             .Render("/css/css_with_compressor_output.css");
 
-			Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_compressor_output.css?r=23D6019A4B502913579DE4BB98131201\" />", tag);
+            Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_compressor_output.css?r=23D6019A4B502913579DE4BB98131201\" />", tag);
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
             Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}\nth{font-weight:normal;vertical-align:bottom}\n.FloatRight{float:right}\n.FloatLeft{float:left}\nli{margin-bottom:.1em;margin-left:0;margin-top:.1em}\nth{font-weight:normal;vertical-align:bottom}\n.FloatRight{float:right}\n.FloatLeft{float:left}"
-			                , cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\css_with_compressor_output.css")]);
+                            , cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\css_with_compressor_output.css")]);
         }
 
         [Test]
@@ -393,7 +393,7 @@ namespace SquishIt.Tests
                             .WithCompressor(CssCompressors.NullCompressor)
                             .Render("/css/css_with_null_compressor_output.css");
 
-			Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_null_compressor_output.css?r=54F52AC95333FEFD5243AC373F573A07\" />", tag);
+            Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/css_with_null_compressor_output.css?r=54F52AC95333FEFD5243AC373F573A07\" />", tag);
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
             Assert.AreEqual(css + "\n" + css + "\n", cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\css_with_null_compressor_output.css")]);
         }
@@ -417,7 +417,7 @@ namespace SquishIt.Tests
             Assert.AreEqual("<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/compressor_instance.css?r=C33D1225DED9D889876CEE87754EE305\" />", tag);
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
             Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}th{font-weight:normal;vertical-align:bottom}.FloatRight{float:right}.FloatLeft{float:left}li{margin-bottom:.1em;margin-left:0;margin-top:.1em}th{font-weight:normal;vertical-align:bottom}.FloatRight{float:right}.FloatLeft{float:left}"
-			                , cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\compressor_instance.css")]);
+                            , cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\compressor_instance.css")]);
         }
 
         [Test]
@@ -465,7 +465,7 @@ namespace SquishIt.Tests
                 .Render("~/css/can_rerender_files.css");
 
             Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}th{font-weight:normal;vertical-align:bottom}.FloatRight{float:right}.FloatLeft{float:left}", cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\can_rerender_files.css")]);
-            
+
             ICssBundle cssBundle2 = cssBundleFactory
                 .WithDebuggingEnabled(false)
                 .WithContents(css2)
@@ -500,7 +500,7 @@ namespace SquishIt.Tests
             Assert.AreEqual(1, cssBundleFactory.FileWriterFactory.Files.Count);
             Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}th{font-weight:normal;vertical-align:bottom}.FloatRight{float:right}.FloatLeft{float:left}li{margin-bottom:.1em;margin-left:0;margin-top:.1em}th{font-weight:normal;vertical-align:bottom}.FloatRight{float:right}.FloatLeft{float:left}", cssBundleFactory.FileWriterFactory.Files[TestUtilities.PreparePathRelativeToWorkingDirectory(@"C:\css\output_C33D1225DED9D889876CEE87754EE305.css")]);
         }
-  
+
         [Test]
         public void CanRenderCssFileWithUnprocessedImportStatement()
         {
@@ -515,7 +515,7 @@ namespace SquishIt.Tests
                 .WithDebuggingEnabled(false)
                 .WithContents(importCss)
                 .Create();
-            
+
             cssBundleFactory.FileReaderFactory.SetContents(importCss);
             cssBundleFactory.FileReaderFactory.SetContentsForFile(@"C:\css\other.css", "#footer{color:#ffffff}");
 

@@ -19,7 +19,7 @@ namespace SquishIt.Framework.Tests
                 for (int i = 0; i < 3; i++)
                 {
                     CreateJsFileWithRandomName(temporaryDirectory);
-                }                    
+                }
 
                 var directoryEnumerator = new DirectoryEnumerator();
                 var result = directoryEnumerator.GetFiles(temporaryDirectory).ToList();

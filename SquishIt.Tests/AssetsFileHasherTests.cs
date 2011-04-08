@@ -70,7 +70,7 @@ namespace SquishIt.Tests
             var hasher = new StubHasher(hashValue);
             var fileResolver = new FileResolver();
             var uri = Assembly.GetExecutingAssembly().CodeBase;
-            var cssFilePath = Path.Combine(Path.GetDirectoryName(uri), TestUtilities.PreparePathRelativeToWorkingDirectory(@"\subdirectory\output.css"));
+            var cssFilePath = Path.GetDirectoryName(uri) + TestUtilities.PreparePath(@"\subdirectory\output.css");
             var url = "../" + Path.GetFileName(uri) + "?test=value";
             var assetsFileHasher = new CssAssetsFileHasher(hashQueryStringKeyName, fileResolver, hasher);
 

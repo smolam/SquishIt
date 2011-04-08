@@ -8,7 +8,7 @@ namespace SquishIt.Tests
 {
     [TestFixture]
     public class CssPathRewriterTests
-    {		
+    {
         [Test]
         public void CanRewritePathsInCssWhenAbsolutePathsAreUsed()
         {
@@ -24,9 +24,9 @@ namespace SquishIt.Tests
                                                         }
                                                     ";
 
-			string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
+            string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
             string targetFile = TestUtilities.PreparePath(@"C:\somepath\someothersubpath\evendeeper\output.css");
-			
+
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -58,7 +58,7 @@ namespace SquishIt.Tests
                                                     ";
             string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
             string targetFile = TestUtilities.PreparePath(@"C:\somepath\someothersubpath\output.css");
-			
+
             string result = CssPathRewriter.RewriteCssPaths(targetFile, sourceFile, css, cssAssetsFileHasher);
 
             string expected =
@@ -84,7 +84,7 @@ namespace SquishIt.Tests
                                                         .ui-widget-content .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
                                                         .ui-widget-header .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
                                                     ";
-                //real example from jquery ui-generated custom css file
+            //real example from jquery ui-generated custom css file
 
             string sourceFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\someothersubpath\myfile.css");
             string targetFile = TestUtilities.PreparePath(@"C:\somepath\somesubpath\myfile.css");
@@ -97,7 +97,7 @@ namespace SquishIt.Tests
                                                         .ui-widget-content .ui-icon {background-image: url(someothersubpath/images/ui-icons_222222_256x240.png); }
                                                         .ui-widget-header .ui-icon {background-image: url(someothersubpath/images/ui-icons_222222_256x240.png); }
                                                     ";
-                //if it fails, it will look like this: url(someothersubpath/someothersubpath/someothersubpath/images/
+            //if it fails, it will look like this: url(someothersubpath/someothersubpath/someothersubpath/images/
 
             Assert.AreEqual(expected, result);
         }

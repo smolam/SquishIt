@@ -123,7 +123,7 @@ namespace SquishIt.Framework.Css
 
         public ICssBundleBuilder WithCompressor(CssCompressors cssCompressor)
         {
-            
+
             this.cssCompressorInstance = MapCompressorEnumToType(cssCompressor);
             return this;
         }
@@ -223,7 +223,7 @@ namespace SquishIt.Framework.Css
                     if (!bundleCache.ContainsKey(key))
                     {
                         string compressedCss;
-                        string hash= null;
+                        string hash = null;
                         bool hashInFileName = false;
 
                         dependentFiles.Clear();
@@ -252,7 +252,7 @@ namespace SquishIt.Framework.Css
                             compressedCss = CompressCss(outputFile, files, cssCompressorInstance, appendHashForAssets);
                             renderer.Render(compressedCss, outputFile);
                         }
-                        
+
                         if (hash == null)
                         {
                             hash = hasher.GetHash(compressedCss);
@@ -358,7 +358,7 @@ namespace SquishIt.Framework.Css
                 {
                     css = ReadFile(file);
                 }
-                
+
                 if (processImports)
                 {
                     css = ProcessImport(css);

@@ -49,25 +49,26 @@ namespace SquishIt.Framework.Utilities
             {
                 url = url.Substring(0, queryStringPosition);
             }
-			
-			if (FileSystem.Unix)
-			{
-				url = url.TrimStart('/');	
-			}
+
+            if (FileSystem.Unix)
+            {
+                url = url.TrimStart('/');
+            }
 
             var resolvedUrl = string.Empty;
-			
+
             var urlUri = new Uri(url, UriKind.RelativeOrAbsolute);
 
             if (!urlUri.IsAbsoluteUri)
             {
-				if (!url.StartsWith("/"))
+                if (!url.StartsWith("/"))
                 {
                     var resolvedPath = Path.GetDirectoryName(cssFilePath);
-					if(FileSystem.Unix) 
-					{
-						resolvedPath = resolvedPath.Replace("file:", "");	
-					}
+                    if (FileSystem.Unix)
+                    {
+                        resolvedPath = resolvedPath.Replace("file:", "");
+                    }
+
                     var outputUri = new Uri(resolvedPath + "/", UriKind.Absolute);
 
                     var resolvedSourcePath = new Uri(outputUri, urlUri);
@@ -109,7 +110,7 @@ namespace SquishIt.Framework.Utilities
             querystring.Add(key, value);
 
             var querystringwithAppendedValue = FlattenedQueryString(querystring);
-			
+
             if (!string.IsNullOrEmpty(querystringwithAppendedValue))
             {
                 querystringwithAppendedValue = "?" + querystringwithAppendedValue;
@@ -117,19 +118,19 @@ namespace SquishIt.Framework.Utilities
 
             return path + querystringwithAppendedValue;
         }
-		
-		//workaround for mono bug - queryString.ToString() above was returning "System.Collections.Specialized.NameValueCollection"
-		static string FlattenedQueryString(System.Collections.Specialized.NameValueCollection queryString)
-		{
-			var output = new System.Text.StringBuilder();
-			for(int i = 0; i<queryString.Count; i++)
-			{
-				if(i > 0) output.Append("&");
-				output.Append(queryString.AllKeys[i]);
-				output.Append("=");
-				output.Append(queryString[i]);
-			}
-			return output.ToString();
-		}
+
+        //workaround for mono bug - queryString.ToString() above was returning "System.Collections.Specialized.NameValueCollection"
+        static string FlattenedQueryString(System.Collections.Specialized.NameValueCollection queryString)
+        {
+            var output = new System.Text.StringBuilder();
+            for (int i = 0; i < queryString.Count; i++)
+            {
+                if (i > 0) output.Append("&");
+                output.Append(queryString.AllKeys[i]);
+                output.Append("=");
+                output.Append(queryString[i]);
+            }
+            return output.ToString();
+        }
     }
 }

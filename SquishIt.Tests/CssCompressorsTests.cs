@@ -32,7 +32,7 @@ namespace SquishIt.Tests
             var uncompressedCss = cssCompressor.CompressContent(css);
             Assert.AreEqual(css, uncompressedCss);
         }
-        
+
         [Test]
         public void YuiCompressorTest()
         {
