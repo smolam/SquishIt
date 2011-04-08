@@ -32,14 +32,14 @@ namespace SquishIt.Tests
             var uncompressedCss = cssCompressor.CompressContent(css);
             Assert.AreEqual(css, uncompressedCss);
         }
-        
+
         [Test]
         public void YuiCompressorTest()
         {
             var cssCompressor = CssCompressorRegistry.Get(YuiCompressor.Identifier);
             var compressedCss = cssCompressor.CompressContent(css);
             //YUI Compressor seems to be removing last semicolon from group, and appending newline before the next one, instead of keeping semicolon/removing newline
-            Assert.AreEqual ("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}\nth{font-weight:normal;vertical-align:bottom}\n.FloatRight{float:right}\n.FloatLeft{float:left}", compressedCss);
+            Assert.AreEqual("li{margin-bottom:.1em;margin-left:0;margin-top:.1em}\nth{font-weight:normal;vertical-align:bottom}\n.FloatRight{float:right}\n.FloatLeft{float:left}", compressedCss);
         }
 
         [Test]
